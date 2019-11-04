@@ -105,3 +105,32 @@ class Calculator:
                     return []
 
             return [operationn, nums]
+
+    def process_input_data(self, input_str, parse_operation_func=None):
+        if not parse_operation_func:
+            parse_operation_func = Calculator.get_operation
+        input_data = self.parse_interactive_mode_input(input_str, parse_operation_func)
+        if not input_data:
+            print("You entered invalid data!")
+            exit(-1)
+        return input_data
+
+    def start_interactive_calculator(self):
+        print("Welcome to the interactive mode\n "
+              "Example usage:\n"
+              "(1) num1 num2 ... numN ADD\n"
+              "(2) num1 num2 SUBTRACT\n"
+              "(3) num1 num2 ... numN MULTIPLY\n"
+              "(4) num1 num2 DIVISION\n"
+              "(5) num1 SQUARE\n"
+              "(6) num1 SQRT\n"
+              "(7) Use res to use results of computations till now\n"
+              "Example: res ADD 5")
+
+        input_str = input("Enter input: ")
+        while input_str:
+            input_data = self.process_input_data(input_str)
+            self.result = Calculator.dispatch_and_compute_result(input_data[0], input_data[1])
+            input_str = input("Enter input: ")
+        print("Result: {}".format(self.result))
+
