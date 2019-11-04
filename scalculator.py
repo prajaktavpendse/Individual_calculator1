@@ -134,3 +134,56 @@ class Calculator:
             input_str = input("Enter input: ")
         print("Result: {}".format(self.result))
 
+    @staticmethod
+    def addition(nums):
+        return sum(nums)
+
+    @staticmethod
+    def subtraction(num1, num2):
+        return num1 - num2
+
+    @staticmethod
+    def multiplication(nums):
+        product = 1
+        for num in nums:
+            product = product * num
+        return product
+
+    @staticmethod
+    def division(num1, num2):
+        return num1 / num2
+
+    @staticmethod
+    def square(num1):
+        return pow(num1, 2)
+
+    @staticmethod
+    def square_root(num1):
+        if num1 < 0:
+            print("Invalid number")
+        return math.sqrt(num1)
+
+    @staticmethod
+    def get_operation(operation):
+        if not isinstance(operation, str):
+            print("Supported operations are: Add, Subtract, Multiply, Divide, Square, Square root")
+
+        operation = operation.upper()
+
+        if "ADD" in operation:
+            return Calculator.Operation.ADD
+        elif "SUB" in operation:
+            return Calculator.Operation.SUBTRACT
+        elif "MUL" in operation:
+            return Calculator.Operation.MULTIPLY
+        elif "DIV" in operation:
+            return Calculator.Operation.DIVIDE
+        elif "SQUARE" in operation:
+            return Calculator.Operation.SQUARE
+        elif "SQRT" in operation:
+            return Calculator.Operation.SQUARE_ROOT
+
+        else:
+            return Calculator.Operation.UNKNOWN
+
+
